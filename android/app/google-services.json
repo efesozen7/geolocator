@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "486758553088",
+    "project_id": "geolocator-6449b",
+    "storage_bucket": "geolocator-6449b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486758553088:android:f56e111d81f322b4e5aae5",
+        "android_client_info": {
+          "package_name": "com.example.geolocator_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "486758553088-cn5uaf2cjm7bi3saugt5k49410u45nsu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.geolocator_flutter",
+            "certificate_hash": "f516103dda2b378640222ad6e86229d1e4ee1f3e"
+          }
+        },
+        {
+          "client_id": "486758553088-k6igetq8a5k2ggpvh4vrdhj8j75upaag.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCn1fOKRk8FBB01kIOV92Fl4GQceicvhLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "486758553088-k6igetq8a5k2ggpvh4vrdhj8j75upaag.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
