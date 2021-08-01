@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator_flutter/auth.dart';
+import 'package:geolocator_flutter/login_page.dart';
 import 'package:provider/provider.dart';
 
 Future main() async {
@@ -36,23 +37,7 @@ class MyApp extends StatelessWidget {
             ),
             body: Builder(
               builder: (BuildContext newContext) {
-                return Center(
-                  child: Column(
-                    children: [
-                      MaterialButton(
-                        onPressed: () {
-                          final provider = Provider.of<AuthProvider>(newContext, listen: false);
-                          provider.googleLogin();
-                        },
-                        child: Text("Login with Google"),
-                      ),
-                      MaterialButton(
-                        onPressed: () => {},
-                        child: Text("Logout"),
-                      )
-                    ],
-                  ),
-                );
+                return LoginPage();
               },
             )),
       ),
