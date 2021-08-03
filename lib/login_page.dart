@@ -7,14 +7,26 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          LoginButton(icon: Image(image: AssetImage("assets/planet.png")), title: Text("Login here"), color: Colors.blueAccent),
-          LoginButton(icon: Image(image: AssetImage("assets/moon.png")), title: Text("Logout here"), color: Colors.green)
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Log-in with Google"),
+        centerTitle: true,
+        backgroundColor: Colors.amber,
+      ),
+      body: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            LoginButton(
+                icon: Image(image: AssetImage("assets/planet.png")),
+                title: Text(
+                  "Login here",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                ),
+                color: Colors.blueAccent),
+          ],
+        ),
       ),
     );
   }
