@@ -33,6 +33,7 @@ dependencies:
   google_sign_in: ^5.0.4
   rxdart: 0.20.0
   provider: ^5.0.0
+  geolocator: ^7.4.0
 
 dev_dependencies:
   flutter_test:
@@ -55,7 +56,7 @@ flutter:
      - assets/fire.png
      - assets/moon.png
 
-  # An image asset can refer to one or more resolution-specific "variants", see
+  # An image asset can re fer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
   # For details regarding adding assets from package dependencies, see
