@@ -16,8 +16,9 @@ class AuthProvider extends ChangeNotifier {
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
-    await FirebaseAuth.instance.signInWithCredential(credential);
+    UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
     notifyListeners();
+    return userCredential;
   }
 
   void googleLogout() async {
