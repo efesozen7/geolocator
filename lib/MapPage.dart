@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -16,6 +18,7 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   late GoogleMapController controller;
+  late StreamSubscription _locationSubscription;
   Circle circle = Circle(circleId: CircleId(""));
   Location _locationTracker = new Location();
 
@@ -23,18 +26,23 @@ class _MapPageState extends State<MapPage> {
   FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
   static final CameraPosition initialLocation = CameraPosition(target: LatLng(41.004391, 29.055446), zoom: 14.45);
+  @override
+  void initState() {
+    _locationSubscription = _locationTracker.onLocationChanged.listen((event) {});
+    super.initState();
+  }
 
   void getCurrentLocation() async {
     try {
       var location = await _locationTracker.getLocation();
+      print("location updated");
       updateCircle(location);
       GeoFirePoint point = geo.point(latitude: location.latitude!, longitude: location.longitude!);
       fireStore.collection('locations').add({'location': point.data, 'userId': 'nothing'});
-      _locationTracker.onLocationChanged.listen((newLocationData) {
-        controller.animateCamera(CameraUpdate.newCameraPosition(
-          new CameraPosition(target: LatLng(newLocationData.latitude!, newLocationData.longitude!), zoom: 18, tilt: 0, bearing: 192.83349),
-        ));
-      });
+
+      controller.animateCamera(CameraUpdate.newCameraPosition(
+          new CameraPosition(target: LatLng(location.latitude!, location.longitude!), zoom: 18, tilt: 0, bearing: 192.83349)));
+      updateCircle(location);
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -43,6 +51,7 @@ class _MapPageState extends State<MapPage> {
   void updateCircle(LocationData loc) {
     LatLng latlng = LatLng(loc.latitude!, loc.longitude!);
     this.setState(() {
+      print("setState");
       circle = Circle(
           circleId: CircleId("car"),
           radius: loc.accuracy!,
@@ -51,6 +60,12 @@ class _MapPageState extends State<MapPage> {
           center: latlng,
           fillColor: Colors.lightBlueAccent.shade200);
     });
+  }
+
+  @override
+  void dispose() {
+    _locationSubscription.cancel();
+    super.dispose();
   }
 
   @override
@@ -78,12 +93,12 @@ class _MapPageState extends State<MapPage> {
       ),
       body: GoogleMap(
         mapType: MapType.hybrid,
+        zoomControlsEnabled: false,
         initialCameraPosition: initialLocation,
         circles: Set.of([circle]),
         onMapCreated: (GoogleMapController cntrl) {
-          controller = cntrl;
+          controller = (cntrl);
         },
-        myLocationEnabled: true,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

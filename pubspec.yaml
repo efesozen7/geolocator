@@ -57,8 +57,6 @@ flutter:
      - assets/planet.png
      - assets/fire.png
      - assets/moon.png
-     - assets/redArrow.png
-
   # An image asset can re fer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
